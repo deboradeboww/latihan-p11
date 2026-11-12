@@ -1,6 +1,7 @@
-import { simpanLokal, muatLokal } from './storage.js';
+// src/state.js
+import { muat, simpan } from './storage.js';
 
-let catatan = muatLokal();
+let catatan = muat();
 
 export function semua() {
   return catatan;
@@ -15,20 +16,20 @@ export function tambah(judul, mk) {
     disematkan: false
   };
   catatan.push(baru);
-  simpanLokal(catatan);
+  simpan(catatan);
 }
 
 export function alihSemat(id) {
   const target = catatan.find(c => c.id === id);
   if (target) {
     target.disematkan = !target.disematkan;
-    simpanLokal(catatan);
+    simpan(catatan);
   }
 }
 
 export function hapus(id) {
   catatan = catatan.filter(c => c.id !== id);
-  simpanLokal(catatan);
+  simpan(catatan);
 }
 
 export function cari(kata) {
